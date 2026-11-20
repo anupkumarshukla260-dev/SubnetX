@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SubnetX | IPv4 Calculator</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>SubnetX</h1>
+
+        <p class="subtitle">
+            Smart IPv4 Subnet Calculator
+        </p>
+
+        <div class="calculator">
+
+            <form action="/calculate" method="POST">
+
+                <label>IPv4 Address</label>
+
+                <input
+                    type="text"
+                    name="ip"
+                    placeholder="192.168.0.1"
+                    value="{{ ip or '' }}"
+                    required
+                >
+
+                <label>CIDR Prefix</label>
+
+                <input
+                    type="number"
+                    name="cidr"
+                    placeholder="27"
+                    min="0"
+                    max="32"
+                    value="{{ cidr or '' }}"
+                    required
+                >
+
+                <button type="submit">
+                    Calculate Subnet
+                </button>
+
+            </form>
+
+            {% if result %}
+            <div class="results">
+
+                <h2>Subnet Details</h2>
+
+                <pre>{{ result }}</pre>
+
+            </div>
+            {% endif %}
+
+        </div>
+
+        <p class="footer">
+            Designed for Networking Students
+        </p>
+
+    </div>
+
+</body>
+</html>
